@@ -25,7 +25,7 @@ COPY --from=build /usr/local/ /usr/local/
 COPY --from=build-essential /build/ /
 COPY init.kai /
 RUN chmod +x /init.kai \
-&&  apk add --no-cache --update-cache pcsc-lite pcsc-lite-libs ccid socat
+&&  apk add --no-cache --update-cache socat
 ENTRYPOINT ["/bin/ash"]
 CMD ["/init.kai"]
 EXPOSE 40773
