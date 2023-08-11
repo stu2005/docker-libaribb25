@@ -29,3 +29,5 @@ RUN chmod +x /init \
 &&  apk add --no-cache --update-cache pcsc-lite pcsc-lite-libs ccid socat
 ENTRYPOINT ["/bin/ash"]
 CMD ["/init"]
+EXPOSE 40774
+EXPOSE 40773
