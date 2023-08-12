@@ -25,7 +25,7 @@ COPY --from=build /usr/local/ /usr/local/
 COPY --from=libpcsckai /build/ /
 COPY init.kai /
 RUN chmod +x /init.kai \
-&&  apk add --no-cache --update-cache socat
+&&  apk add --no-cache --update-cache socat libgcc libstdc++
 ENTRYPOINT ["/bin/ash"]
 CMD ["/init.kai"]
 EXPOSE 40773

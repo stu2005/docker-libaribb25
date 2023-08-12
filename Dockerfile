@@ -19,7 +19,7 @@ WORKDIR /build/
 COPY --from=build /usr/local/ /usr/local/
 COPY init /
 RUN chmod +x /init \
-&&  apk add --no-cache --update-cache pcsc-lite pcsc-lite-libs ccid socat
+&&  apk add --no-cache --update-cache pcsc-lite pcsc-lite-libs ccid socat libgcc libstdc++
 ENTRYPOINT ["/bin/ash"]
 CMD ["/init"]
 EXPOSE 40773
