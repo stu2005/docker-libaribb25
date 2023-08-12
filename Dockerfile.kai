@@ -8,14 +8,12 @@ WORKDIR /src/
 COPY --from=libpcsckai /build/ /
 
 RUN set -x \
-&&  apk add --no-cache --update-cache alpine-sdk git cmake pcsc-lite-dev pkgconfig \
+&&  apk add --no-cache --update-cache alpine-sdk ninja git cmake pcsc-lite-dev pkgconfig \
 &&  git clone https://github.com/tsukumijima/libaribb25 . \
-&&  cmake -DWITH_PCSC_LIBRARY=pcsckai -B build \
+&&  cmake -G Ninja -D WITH_PCSC_LIBRARY=pcsckai -B build \
 &&  cd build \
-&&  make -j$(nproc) \
-&&  make install
-
-WORKDIR /build/
+&&  ninja -j$(nproc) \
+&&  ninja install
 
 
 # final image

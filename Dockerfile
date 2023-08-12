@@ -3,12 +3,12 @@ FROM alpine:latest AS build
 WORKDIR /src/
 
 RUN set -x \
-&&  apk add --no-cache --update-cache alpine-sdk git cmake pcsc-lite pcsc-lite-libs pcsc-lite-dev pkgconfig \
+&&  apk add --no-cache --update-cache alpine-sdk ninja git cmake pcsc-lite pcsc-lite-libs pcsc-lite-dev pkgconfig \
 &&  git clone https://github.com/tsukumijima/libaribb25 . \
-&&  cmake -B build \
+&&  cmake -G Ninja -B build \
 &&  cd build \
-&&  make -j$(nproc) \
-&&  make install
+&&  ninja -j$(nproc) \
+&&  ninja install
 
 WORKDIR /build/
 
