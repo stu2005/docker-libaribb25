@@ -1,11 +1,11 @@
 # download bcas
-FROM stu2005/build-essential AS build-essential 
+FROM stu2005/libpcsckai AS libpcsckai 
 
 
 # build libaribb25
 FROM alpine:latest AS build
 WORKDIR /src/
-COPY --from=build-essential /build/ /
+COPY --from=libpcsckai /build/ /
 
 RUN set -x \
 &&  apk add --no-cache --update-cache alpine-sdk git cmake pcsc-lite-dev pkgconfig \
@@ -22,7 +22,7 @@ WORKDIR /build/
 FROM alpine:latest
 WORKDIR /build/
 COPY --from=build /usr/local/ /usr/local/
-COPY --from=build-essential /build/ /
+COPY --from=libpcsckai /build/ /
 COPY init.kai /
 RUN chmod +x /init.kai \
 &&  apk add --no-cache --update-cache socat
