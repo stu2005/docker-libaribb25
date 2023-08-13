@@ -3,7 +3,7 @@ FROM alpine:latest AS build
 WORKDIR /src/
 
 RUN set -x \
-&&  apk add --no-cache --update-cache build-base git cmake ninja \
+&&  apk add --no-cache --update-cache build-base git cmake ninja pcsc-lite-dev \
 &&  git clone https://github.com/tsukumijima/libaribb25 . \
 &&  cmake -G Ninja -B build \
 &&  cd build \
