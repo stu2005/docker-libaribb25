@@ -8,12 +8,9 @@ RUN set -x \
 &&  cd build \
 &&  ninja -j$(nproc) \
 &&  ninja install
-WORKDIR /build/
-
 
 # final image
 FROM alpine:latest
-WORKDIR /build/
 COPY --from=build /usr/local/ /usr/local/
 COPY init /
 RUN chmod +x /init \

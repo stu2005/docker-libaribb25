@@ -15,7 +15,6 @@ RUN set -x \
 
 # final image
 FROM alpine:latest
-WORKDIR /build/
 COPY --from=build /usr/local/ /usr/local/
 COPY --from=libpcsckai /build/ /
 COPY init.kai /
