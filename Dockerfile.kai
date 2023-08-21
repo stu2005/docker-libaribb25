@@ -1,5 +1,5 @@
 # download bcas
-FROM stu2005/libpcsckai AS libpcsckai 
+FROM stu2005/libpcsckai:latest AS libpcsckai 
 
 # build libaribb25
 FROM alpine:latest AS build
@@ -17,9 +17,9 @@ RUN set -x \
 FROM alpine:latest
 COPY --from=build /usr/local/ /usr/local/
 COPY --from=libpcsckai /build/ /
-COPY init.kai /
-RUN chmod +x /init.kai \
+COPY init.kai /init
+RUN chmod +x /init \
 &&  apk add --no-cache --update-cache socat libgcc libstdc++
 ENTRYPOINT ["/bin/ash"]
-CMD ["/init.kai"]
+CMD ["/init"]
 EXPOSE 40773
