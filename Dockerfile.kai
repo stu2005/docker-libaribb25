@@ -7,8 +7,7 @@ WORKDIR /src/
 COPY --from=libpcsckai /build/ /
 RUN set -x \
 &&  apk add --no-cache --update-cache build-base git cmake ninja pcsc-lite-dev \
-&&  git clone https://github.com/tsukumijima/libaribb25 .
-RUN set -x \
+&&  git clone https://github.com/tsukumijima/libaribb25 . \
 &&  cmake -G Ninja -D WITH_PCSC_LIBRARY=pcsckai -B build \
 &&  cd build \
 &&  ninja -j$(nproc) \
